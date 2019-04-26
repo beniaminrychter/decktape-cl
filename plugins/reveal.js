@@ -31,14 +31,13 @@ class Reveal {
 
   configure() {
     return this.page.evaluate(fragments => Reveal.configure({
-        controls  : false,
-        progress  : false,
-        fragments : fragments,
-      }),
-      // It seems passing 'fragments=true' in the URL query string does not take precedence
-      // over globally configured 'fragments' and prevents from being able to toggle fragments
-      // with ...?fragments=<true|false> so we work around that by parsing the page query string
-      (URI(this.page.url()).query(true)['fragments'] || 'false').toLowerCase() === 'true');
+      controls  : false,
+      progress  : false,
+      fragments : true,
+      menu: {
+        openButton: false
+      }
+    }));
   }
 
   slideCount() {
